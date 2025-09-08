@@ -11,6 +11,8 @@ use telemetry_parser::util;
 
 use serde_json::json;
 
+use std::f64::consts::PI;
+
 /** gyro2bb v0.2.8-Author: Adrian <adrian.eddy@gmail.com> Extract gyro and metadata from camera files **/
 
 #[derive(FromArgs)]
@@ -80,8 +82,8 @@ fn main() {
             let accl = v.accl.unwrap_or_default();
             let imu = json!({
                 "t": v.timestamp_ms,
-                "g": { "x": -gyro[2], "y": gyro[1], "z": gyro[0] },
-                "a": { "x": -accl[2] * 2048.0, "y": accl[1] * 2048.0, "z": accl[0] * 2048.0 }
+                "g": { "x": gyro[0] * (PI / 180.0), "y": gyro[1] * (PI / 180.0), "z": gyro[2] * (PI / 180.0) },
+                "a": { "x": accl[0] / 9.80665, "y": accl[1] / 9.80665, "z": accl[2] / 9.80665 }
             });
             println!("{}", serde_json::to_string(&imu).unwrap());
             i += 1;
