@@ -80,8 +80,8 @@ fn main() {
             let accl = v.accl.unwrap_or_default();
             let imu = json!({
                 "t": v.timestamp_ms,
-                "gyro": { "x": -gyro[2], "y": gyro[1], "z": gyro[0] },
-                "accel": { "x": -accl[2] * 2048.0, "y": accl[1] * 2048.0, "z": accl[0] * 2048.0 }
+                "Gyroscope": { "x": -gyro[2], "y": gyro[1], "z": gyro[0] },
+                "Accelerometer": { "x": -accl[2] * 2048.0, "y": accl[1] * 2048.0, "z": accl[0] * 2048.0 }
             });
             println!("{}", serde_json::to_string(&imu).unwrap());
             i += 1;
