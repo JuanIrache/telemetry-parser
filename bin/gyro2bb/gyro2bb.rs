@@ -68,7 +68,7 @@ fn main() {
     });
 
     println!("CAMERASTART");
-    println!("{}", serde_json::to_string_pretty(&camera).unwrap());
+    println!("{}", serde_json::to_string(&camera).unwrap());
     println!("CAMERAEND");
     println!("IMUSTART");
 
